@@ -4,6 +4,7 @@ import { Validate } from '@/src/utils/validate';
 import { buildHeaders, buildRequestData } from '@/src/utils/buildHeadersAndData';
 import { replaseURL } from '@/src/utils/replaceUrl';
 import type { DataType, headersList, VariableItem } from '@/src/type/type';
+import { useLocale } from 'next-intl';
 
 type Props = {
   url: string;
@@ -14,6 +15,7 @@ type Props = {
 };
 
 export function useRestClientForm({ url, method, body, headersList, variables }: Props) {
+  const locale = useLocale();
   const [isLoading, setIsLoading] = useState(false);
   const [res, setRes] = useState('');
   const [status, setStatus] = useState<number>(0);
@@ -57,7 +59,7 @@ export function useRestClientForm({ url, method, body, headersList, variables }:
         url: requestUrl,
         headers: headersObj,
         body: requestBody,
-      });
+      }, locale);
       setIsLoading(false);
 
       if (responseStatus === 200) {

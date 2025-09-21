@@ -3,8 +3,8 @@ export async function sendRequest(data: {
   url: string;
   headers: Record<string, string>;
   body: string;
-}) {
-  const res = await fetch(`/API/writeRow`, {
+}, locale: string) {
+  const res = await fetch(`/${locale}/API/writeRow`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(data),
